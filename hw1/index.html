@@ -81,10 +81,34 @@
 			
 		<h2>Task 3: Transforms</h2>
 		<p>The cubeman is doing jumping jacks. This was achieved through translations and rotations. The cubeman is also pink now.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Q3.png" width="400px"/>
+				  <figcaption>Pink stickman doing jumping jacks.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 
 		<h2>Task 4: Barycentric coordinates</h2>
 		<p>Barycentric coordinates represent the weighting of each of the triangle's vertices. The closer a coordinate is being “pulled” to a vertex, the more its weighting for that vertex is. This can be shown in the screenshot of the triangle below. The intensity of red, green, and blue represents the alpha, beta, and gamma values. The closer it is to its corresponding vertex, the more intense the color is.</p>
-
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Q4.png" width="400px"/>
+				  <figcaption>Screenshot of test7.svg.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Q4_Triangle.png" width="400px"/>
+				  <figcaption>Example of barycentric weighting using RGB triangle.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+			
 		<h2>Task 5: "Pixel sampling" for texture mapping</h2>
 		<p>For texture mapping, the uv coordinates tell us what color should be used at a texel. We convert values to uv coordinates using barycentric interpolation. Nearest neighbor picks the closest sampled texel while bilinear sampling uses the 4 nearest texels to weight an average color. The weighting is dependent on distance, which is why I weight using the fractional distance it is away from the texel. I clamp the u and v values to ensure I do not go out of bounds of our texture map. Nearest will be sharp and jagged for corners and fine details, while bilinear will have an antialiasing effect since we are averaging colors, similarly to supersampling. </p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
