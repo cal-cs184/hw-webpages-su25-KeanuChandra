@@ -142,7 +142,7 @@
 		<p>These derivatives were found by calculating uv one pixel to the right for the x derivative and one pixel down for the y derivative with barycentric coords and finding the differences from the original uv values. </p>
 		<p>L_ZERO is the fastest and uses the lowest memory, but results in aliasing in far distances. It is good for simple applications where antialiasing is not an issue and for close-up textures.</p>
 		<p>L_NEAREST is slower and uses more memory, but allows for anti-aliasing for far away textures. The issue with nearest is that you will see exactly where the levels change since there is no smooth transition.</p>
-		<p>L_LINEAR is the slowest and uses the most memory but eliminates the issue of sharp mip level transitions. It is good for applications where you want to maximize the perceived quality and smoothness of graphics. </p>
+		<p>L_LINEAR is the slowest and uses the most memory but eliminates the issue of sharp mip level transitions. It is good for applications where you want to minimize aliasing effects and hide mipmap level transitions. </p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
@@ -158,7 +158,7 @@
 			  <tr>
 				<td style="text-align: center;">
 				  <img src="Q6_L_NEAREST_P_NEAREST (2).png" width="400px"/>
-				  <figcaption>Mipmap nearest with nearest pixel. The focused feature here (the eye) is more blurred representing a higher mipmap level.</figcaption>
+				  <figcaption>Mipmap nearest with nearest pixel. The focused feature here (the tree) is more blurred, representing a higher mipmap level. This is a form of texture anti-aliasing.</figcaption>
 				</td>
 				<td style="text-align: center;">
 				  <img src="Q6_L_NEAREST_P_LINEAR (2).png" width="400px"/>
