@@ -38,20 +38,12 @@
 
 		Link to GitHub repository:  <a href="https://github.com/cal-cs184/hw-rasterizer-mulch">Git Repository</a>
 
-		<figure>
-			<img src="lion.jpg" alt="Lion" style="width:50%"/>
-			<figcaption>You can add images with captions!</figcaption>
-		</figure>
-
 		<!--
 		We've already added one heading per task, to make your write-up as navigable when grading. Please fit your write-up within these sections!
 		-->
 
 		<h2>Overview</h2>
 		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
-		To rasterize a triangle, I first set the bounding box of the triangle by finding the max and min x and y values among the points. I then check if these points are within the bounds of my frame. I then go through each point and calculate its barycentric coordinates. If any one of the alpha, beta, or gamma values is negative, this means the pixel is outside of the triangle and should not be filled.
-		<h2>Task 1: Drawing Single-Color Triangles</h2>
-		
 
 		<p>To rasterize a triangle, I first set the bounding box of the triangle by finding the max and min x and y values among the points. I then check if these points are within the bounds of my frame. I then go through each point and calculate its barycentric coordinates. If any one of the alpha, beta, or gamma values is negative, this means the pixel is outside of the triangle and should not be filled.</p>
 		<p>My algorithm checks each sample in the bounding box of the sample through a nested for loop. There are no additional iterations, so it cannot be worse than the specified algorithm.</p>
@@ -68,7 +60,24 @@
 		
 		<h2>Task 2: Antialiasing by Supersampling</h2>
 		<p>Let’s say we have a sample rate of n. This means that for every pixel in the frame buffer, we have n pixels in the sample buffer. To account for this, the sample_buffer is sized to the normal width*height but also multiplied by sample_rate. In the rasterize_triangle, additional nested for loops are added to iterate through the horizontal and vertical subpixels in a pixel and check if they are in the triangle. To resolve to framebufer the average color of all subpixels from the sample buffer for a pixel is taken. Supersampling is useful because it allows us to smooth out our final image. This removes aliasing, especially for sharp corners, by smoothing out and averaging pixels among its neighbors. This can be seen in the screenshot where the jaggies have been significantly erased through supersampling. </p>
-
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="Q2_1.png" width="400px"/>
+				  <figcaption>No supersampling, very jagged and defined boundaries since we only have absolute color values (no averages).</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Q2_4.png" width="400px"/>
+				  <figcaption>Moderate level of supersampling, we can see the pixels where white and red are averaged, resulting in a smoother result.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="Q2_16.png" width="400px"/>
+				  <figcaption>Highest level of supersampling, we can see more of the effects of averaging as we have a very light red on the outer boundary of the triangle that deepens as we go to the center of the triangle</figcaption>
+				</td>
+			  </tr>
+		</div>	
+			
 		<h2>Task 3: Transforms</h2>
 		<p>The cubeman is doing jumping jacks. This was achieved through translations and rotations. The cubeman is also pink now.</p>
 
