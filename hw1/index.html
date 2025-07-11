@@ -53,7 +53,7 @@
 		<h2>Task 1: Drawing Single-Color Triangles</h2>
 		
 
-		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<p>To rasterize a triangle, I first set the bounding box of the triangle by finding the max and min x and y values among the points. I then check if these points are within the bounds of my frame. I then go through each point and calculate its barycentric coordinates. If any one of the alpha, beta, or gamma values is negative, this means the pixel is outside of the triangle and should not be filled.</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
