@@ -116,21 +116,21 @@
 			  <tr>
 				<td style="text-align: center;">
 				  <img src="Q5_nearest_1.png" width="400px"/>
-				  <figcaption>Nearest Sampling at 1 sample per pixel.</figcaption>
+				  <figcaption>Nearest Sampling at 1 sample per pixel. Textures are very jagged and lattitude lines are so aliased they are dotted.</figcaption>
 				</td>
 				<td style="text-align: center;">
 				  <img src="Q5_nearest_16.png" width="400px"/>
-				  <figcaption>Nearest Sampling at 16 sample per pixel.</figcaption>
+				  <figcaption>Nearest Sampling at 16 samples per pixel. Textures are still aliased but are somewhat smoothed due to supersampling.</figcaption>
 				</td>
 			  </tr>
 			  <tr>
 				<td style="text-align: center;">
 				  <img src="Q5_bilinear_1.png" width="400px"/>
-				  <figcaption>Bilinear Sampling at 1 sample per pixel.</figcaption>
+				  <figcaption>Bilinear Sampling at 1 sample per pixel. Latitude lines aren't jagged anymore, overall image looks much better. There is a large apparent difference when looking at thin features like the latitude lines due to the fact pixels are easily skipped in nearest.</figcaption>
 				</td>
 				<td style="text-align: center;">
 				  <img src="Q5_bilinear_16.png" width="400px"/>
-				  <figcaption>Bilinear Sampling at 1 sample per pixel.</figcaption>
+				  <figcaption>Bilinear Sampling at 16 samples per pixel. Very similar to 1 sample per pixel but slightly smoother.</figcaption>
 				</td>
 			  </tr>
 			</table>
@@ -157,7 +157,7 @@
 			  <tr>
 				<td style="text-align: center;">
 				  <img src="Q6_L_NEAREST_P_NEAREST.png" width="400px"/>
-				  <figcaption>Mipmap nearest with nearest pixel.</figcaption>
+				  <figcaption>Mipmap nearest with nearest pixel. The focused feature here (the eye) is more blurred representing a higher mipmap level.</figcaption>
 				</td>
 				<td style="text-align: center;">
 				  <img src="Q6_L_NEAREST_P_LINEAR.png" width="400px"/>
@@ -165,22 +165,5 @@
 				</td>
 			  </tr>
 			</table>
-		</div>
-	
-			
-		<h2>(Optional) Task 7: Extra Credit - Draw Something Creative!</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<h2>Additional Notes (please remove)</h2>
-		<ul>
-			<li>You can also add code if you'd like as so: <code>code code code</code></li>
-			<li>If you'd like to add math equations, 
-				<ul>
-					<li>You can write inline equations like so: \( a^2 + b^2 = c^2 \)</li>
-					<li>You can write display equations like so: \[ a^2 + b^2 = c^2 \]</li>
-				</ul>
-			</li>
-		</ul>
-		</div>
 	</body>
 </html>
