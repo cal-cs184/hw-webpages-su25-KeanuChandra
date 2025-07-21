@@ -32,11 +32,11 @@
 
 		<br>
 
-		Link to webpage: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
+		Link to webpage: (TODO) <a href="https://cal-cs184.github.io/hw-webpages-su25-KeanuChandra/hw2/index.html">https://cal-cs184.github.io/hw-webpages-su25-KeanuChandra/hw2/index.html</a>
 
 		<br>
 		
-		Link to GitHub repository: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
+		Link to GitHub repository: (TODO) <a href="https://github.com/cal-cs184/hw2-meshedit-keanu">https://github.com/cal-cs184/hw2-meshedit-keanu</a>
 
 		<figure>
 			<img src="teapot.png" alt="Teapot" style="width:50%"/>
@@ -48,12 +48,13 @@
 		-->
 
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
+		<p>This assignment first creates Bezier curves and surfaces with Casteljau's algorithm. This uses LERP and is a pretty straightforward implementation. The resulting curves are very elegant and smooth, though. This same algorithm can be used to add surfaces to a mesh such as with the teapot demonstrated below.</p>
+		<p>The second part of this assignment focuses on shading and mesh operations. This was harder to implement and I encountered several bugs when I either set the wrong neighbors for halfedges or set values after they were modified on accident. The final piece of the puzzle was loop subdivision, which allowed meshes to become more dense at the cost of losing hard corners.</p>	
 
 		<h2>Section I: Bezier Curves and Surfaces</h2>
 
 		<h3>Part 1: Bezier curves with 1D de Casteljau subdivision</h3>
-		Casteljau’s algorithm uses LERP in order to recursively find a point on a curve at a given timestep. We process n points by LERPing adjacent points to get n-1 intermediate points. We continue doing this until we are left with one point that lies on our Bezier Curve. I implemented only one step which iterates through all the points except the last and LERPs the current point with the next.
+		Casteljau’s algorithm uses LERP in order to recursively find a point on a curve at a given timestep. We process n points by LERPing adjacent points to get n-1 intermediate points. We continue doing this until we are left with one point that lies on our Bezier Curve. I implemented only one step, which iterates through all the points except the last and LERPs the current point with the next.
 
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
@@ -103,10 +104,11 @@
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="1.1a.png" width="400px"/>
-				  <figcaption>1st step.</figcaption>
+				  <img src="mt_teapot.png" width="400px"/>
+				  <figcaption>Screenshot of bez/teapot.bez.</figcaption>
 				</td>
 			  </tr>
+			  </table>
 		</div>
 			
 		<h2>Section II: Triangle Meshes and Half-Edge Data Structure</h2>
@@ -114,16 +116,94 @@
 		<h3>Part 3: Area-weighted vertex normals</h3>
 		<p>Starting at the halfedge of our vertex we are evaluating we find two more points on a triangle, first the vertex of the twin and then the vertex of the next twin. We then cross multiply the edges to get our face normal. To iterate through all surrounding triangles we set the next halfedge to be on another of the edges by making it the next of the twin of the current halfedge. We do this until we return ot our original halfedge.</p>
 
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="3.1.png" width="400px"/>
+				  <figcaption>Teapot without vertex normals.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="3.2.png" width="400px"/>
+				  <figcaption>Teapot with vertex normals.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 		<h3>Part 4: Edge flip</h3>
 		<p>Edge flip first gets all the relevant half edges, vertices, edges, and faces. I then moved the crossing half edge by changing its vertex and next half edge. I modified its adjacent halfedges to make a legal mesh. I repeated this for the twin of the crossing half edge. I did have an issue while debugging where one of my edges was disappearing but I was able to solve this using check_for on my disappearing edge and clicking on the halfedges to see if they were still attached to the edge.</p>
 
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="4.1.png" width="400px"/>
+				  <figcaption>Teapot without edge flips.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="3.2.png" width="400px"/>
+				  <figcaption>Teapot with edge flips.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+			
 		<h3>Part 5: Edge split</h3>
 		<p>Edge split was a lot more complicated because I had to introduce 3 new edges, two new faces, and 6 new half edges. I created a diagram of my components and then made sure to modify every element using setNeighbors to have the correct neighbors (even if there wasn’t any change). There were two major debugging issues I faced. First, I kept losing an edge due to the fact that I was setting the twin of my bottom edges to the twin of the old bottom edges after they had been modified, leading to them receiving the wrong half-edges for the twin. Second, I was also not modifying these twins to have a changed twin values of the bottom edges not the middle edges.</p>
-
+		
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="5.1.png" width="400px"/>
+				  <figcaption>Teapot without edge splits.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="5.2.png" width="400px"/>
+				  <figcaption>Teapot with edge splits.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="5.3.png" width="400px"/>
+				  <figcaption>Teapot with edge splits and edge flips.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+			
 		<h3>Part 6: Loop subdivision for mesh upsampling</h3>
 		<p>Upsample has several loops in order to implement loop subdivision. The first loop computes new positions for the original vertices using the formula provided in the spec. The second loop finds the edge midpoint using a weighted midpoint. The third loop stores the original edges and then the fourth loop splits them. Finally, edges that connect old and new vertices are flipped and positions are updated. </p>
 		<p>Using loop subdivision, our cube becomes very asymmetric and loses form. This is because the faces do not have symmetric edges. By splitting each face to make a cross we get a more symmetric result from loop subdividision. </p>
 
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="6.1.png" width="400px"/>
+				  <figcaption>Teapot with loop subdivision.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="6.2.png" width="400px"/>
+				  <figcaption>Cube after one loop subdivision.</figcaption>
+				</td>	
+			  </tr>
+			<tr>
+				<td style="text-align: center;">
+				  <img src="6.3.png" width="400px"/>
+				  <figcaption>Cube after a few loop subdivisions. Sharp edges and corners have been muted.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="6.4.png" width="400px"/>
+				  <figcaption>Fixing cube with edge splits.</figcaption>
+				</td>	
+				<td style="text-align: center;">
+				  <img src="6.5.png" width="400px"/>
+				  <figcaption>Cube after edge splits and loop subdivision.</figcaption>
+				</td>	
+			  </tr>
+			</table>
+		</div>
+			
 		</div>
 	</body>
 </html>
