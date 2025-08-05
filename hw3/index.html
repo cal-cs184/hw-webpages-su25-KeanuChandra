@@ -53,6 +53,16 @@
 		<p>In raytrace_pixel I generate num_sample samples using get_sample(). I then generate a ray by offsetting the pixel coords with my sample coords and normalizing.</p>	
 		<p>To find if a ray intersects a triangle, I first check where the ray intersects the triangle's plane using the Moller Trumbore Algorithm. I solve for barycentric coordinates with the determinant I derived through the cross product of the ray direction vector and the triangle edge. If this determinant is close to zero this means that the ray is parallel to the triangle. Using intermediate vectors p, q, and t we can find the barycentric coordinates of the triangle, giving us a decision if there is a valid hit and t-value (distance).</p>
 		<p>Below are some of my renders</p>
+			<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="mlt.jpg" width="400px"/>
+				  <figcaption>Moller Trumbore algorithm I used to check for intersection.</figcaption>
+				</td>
+			</table>
+				
+		</div>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
@@ -367,8 +377,32 @@
 		</div>
 			
 		<h2>Part 5: Adaptive Sampling</h2>
-
-		
+		<p>Adaptive sampling gives more samples to areas with high-variance such as edges while uniform surfaces will get less samples. To implement this we sample in batches. In each of these batches we accumulate illuminance values through s1 and s2. We can then calculate the mean of s1 and variance which is (s2 - (s1^2) / num_samples) / (num_samples - 1). We then calculate I which is the 95 percent confidence interval for the mean. If our confidence interval is less than our tolerance, then we can stop sampling as we have determined the batch to be stable enough. Unfortuantely in my implementation the cieling did not recieve adaptive sampling which I could not debug.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="spheres_adaptive.png" width="400px"/>
+				  <figcaption>Spheres with adaptive sampling</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="spheres_adaptive_rate.png" width="400px"/>
+				  <figcaption>Sphere rates</figcaption>
+				</td>	
+			  </tr>
+				 <tr>
+				<td style="text-align: center;">
+				  <img src="bunnyadaptive.png" width="400px"/>
+				  <figcaption>Bunny with adaptive sampling</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bunnyadaptive_rate.png" width="400px"/>
+				  <figcaption>Bunny Rates</figcaption>
+				</td>	
+			  </tr>
+			</table>
+				
+		</div>
 		
 	
 		</div>
