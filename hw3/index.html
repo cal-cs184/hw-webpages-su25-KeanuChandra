@@ -101,12 +101,48 @@
 		<h2>Part 3: Direct Illumination</h2>
 		<p>The first implementation is the estimate_direct_lighitng_hemispheres. This implementation samples a random direction using sample_f that comes from somewhere on the hemisphere. We convert this sampled local direction into world-space and create a ray that starts from our point and goes in the random direction. If it hits a light source, we get an emission value back which we can use to solve for our point's brightness with the Monte Carlo estimator. We do this a number of times and output the average. </p>
 		<p>The second implementation is importance sampling. This time we iterate through all the light sources and trace rays to our point. We check if this light source is not blocked by an object and add the contribution via the Monte Carlo estimator. </p>
+
+			
 			
 		<h2>Part 4: Global illuminationg</h2>
 
 		<h2>Part 5: Adaptive Sampling</h2>
 
-		
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="CBbunny_H_16_8_hemisphere.png" width="400px"/>
+				  <figcaption>Bunny Uniform Hemisphere</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="CBbunny_H_16_8_importance.png" width="400px"/>
+				  <figcaption>Bunny Importance Sampling</figcaption>
+				</td>		
+			  </tr>
+				<tr>
+				<td style="text-align: center;">
+				  <img src="wall-e_16_8_hemisphere.png" width="400px"/>
+				  <figcaption>Wall-e Uniform Hemisphere</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="wall-e_16_8_importance.png" width="400px"/>
+				  <figcaption>Wall-e Importance Sampling</figcaption>
+				</td>		
+			  </tr>
+				<tr>
+				<td style="text-align: center;">
+				  <img src="coil_16_8_hemisphere.png" width="400px"/>
+				  <figcaption>Coil Uniform Hemisphere</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="coil_16_8_importance.png" width="400px"/>
+				  <figcaption>Coil Importance Sampling</figcaption>
+				</td>		
+			  </tr>
+			</table>
+				
+		</div>
 		
 	
 		</div>
