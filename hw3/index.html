@@ -102,13 +102,7 @@
 		<p>The first implementation is the estimate_direct_lighitng_hemispheres. This implementation samples a random direction using sample_f that comes from somewhere on the hemisphere. We convert this sampled local direction into world-space and create a ray that starts from our point and goes in the random direction. If it hits a light source, we get an emission value back which we can use to solve for our point's brightness with the Monte Carlo estimator. We do this a number of times and output the average. </p>
 		<p>The second implementation is importance sampling. This time we iterate through all the light sources and trace rays to our point. We check if this light source is not blocked by an object and add the contribution via the Monte Carlo estimator. </p>
 
-			
-			
-		<h2>Part 4: Global illuminationg</h2>
-
-		<h2>Part 5: Adaptive Sampling</h2>
-
-		<div style="display: flex; flex-direction: column; align-items: center;">
+			<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
@@ -143,6 +137,37 @@
 			</table>
 				
 		</div>
+
+			<p>Below are renders of the bunny with importance sampling with different values of light rays.</p>
+			<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="CBbunny_1_1.png" width="400px"/>
+				  <figcaption>1 light ray</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="CBbunny_1_4.png" width="400px"/>
+				  <figcaption>4 light rays</figcaption>
+				</td>	
+				  <td style="text-align: center;">
+				  <img src="CBbunny_1_16.png" width="400px"/>
+				  <figcaption>16 light rays</figcaption>
+				</td>	
+				  <td style="text-align: center;">
+				  <img src="CBbunny_1_64.png" width="400px"/>
+				  <figcaption>64 light rays</figcaption>
+				</td>	
+			  </tr>
+			</table>
+				
+		</div>
+			
+		<h2>Part 4: Global illuminationg</h2>
+
+		<h2>Part 5: Adaptive Sampling</h2>
+
+		
 		
 	
 		</div>
