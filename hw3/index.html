@@ -161,26 +161,9 @@
 			</table>
 				
 		</div>
-		<p>Here is a comparison between only direct illumination and only indirect illumination</p>
-			<p>Below are renders of the bunny with importance sampling with different values of light rays.</p>
-			<div style="display: flex; flex-direction: column; align-items: center;">
-			<table style="width: 100%; text-align: center; border-collapse: collapse;">
-			  <tr>
-				<td style="text-align: center;">
-				  <img src="bunny_direct_1024.png" width="400px"/>
-				  <figcaption>ONLY direct lighting</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="bunny_indirect_output_1024.png" width="400px"/>
-				  <figcaption>ONLY indirect lighting</figcaption>
-				</td>	
-			  </tr>
-			</table>
-				
-		</div>
 			
 			
-		<h2>Part 4: Global illuminationg</h2>
+		<h2>Part 4: Global illumination</h2>
 		<p>In this part, I implemented multiple light bounces using a recursive algorithm. I first found the one_bounce_radiance which I calculated in the previous part. I then determined the next direction from where light may have arrived using the material's BSDF through sample_f. I recieve the incoming direction and the pdf of that direction. I repeat this process for a ray going in this direction. This recursion is stopped either when I have hit the maximum depth or roll a stopping condition via the coin flip. I then add the indirect lighting with the one-bounce lighting for the final result. </p>
 		<p>Below are some images rendered with global illumination</p>	
 		<div style="display: flex; flex-direction: column; align-items: center;">
@@ -221,6 +204,59 @@
 				  <td style="text-align: center;">
 				  <img src="CBbunny_1_64.png" width="400px"/>
 				  <figcaption>64 light rays</figcaption>
+				</td>	
+			  </tr>
+			</table>
+				
+		</div>
+			<p>Here is a comparison between only direct illumination and only indirect illumination. The indirect illumination is provided by a single extra bounce.</p>
+			<p>Below are renders of the bunny with importance sampling with different values of light rays.</p>
+			<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="bunny_direct_1024.png" width="400px"/>
+				  <figcaption>ONLY direct lighting</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bunny_indirect_output_1024.png" width="400px"/>
+				  <figcaption>ONLY indirect lighting</figcaption>
+				</td>	
+			  </tr>
+			</table>
+				
+		</div>
+			<p>The next images show the same dae file but without accumulated bounces at different levels of ray depth</p>
+			<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="bunny_noAccum_output_1024_0.png" width="400px"/>
+				  <figcaption>0 bounces</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bunny_noAccum_output_1024_1.png" width="400px"/>
+				  <figcaption>1 bounce</figcaption>
+				</td>	
+			  </tr>
+				 <tr>
+				<td style="text-align: center;">
+				  <img src="bunny_indirect_output_1024.png" width="400px"/>
+				  <figcaption>2 bounces</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="bunny_indirect_output_1024_3.png" width="400px"/>
+				  <figcaption>3 bounces</figcaption>
+				</td>	
+			  </tr>
+				 <tr>
+				<td style="text-align: center;">
+				  <img src="bunny_noAccum_output_1024_4.png" width="400px"/>
+				  <figcaption>4 bounces</figcaption>
+				</td>	
+				 <td style="text-align: center;">
+				  <img src="bunny_noAccum_output_1024_5.png" width="400px"/>
+				  <figcaption>5 bounces</figcaption>
 				</td>	
 			  </tr>
 			</table>
