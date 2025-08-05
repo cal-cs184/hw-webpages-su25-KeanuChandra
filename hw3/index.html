@@ -164,7 +164,27 @@
 		</div>
 			
 		<h2>Part 4: Global illuminationg</h2>
-
+		<p>In this part, I implemented multiple light bounces using a recursive algorithm. I first found the one_bounce_radiance which I calculated in the previous part. I then determined the next direction from where light may have arrived using the material's BSDF through sample_f. I recieve the incoming direction and the pdf of that direction. I repeat this process for a ray going in this direction. This recursion is stopped either when I have hit the maximum depth or roll a stopping condition via the coin flip. I then add the indirect lighting with the one-bounce lighting for the final result. </p>
+		<p>Below are some images rendered with global illumination</p>	
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="spheres_global_1024.png" width="400px"/>
+				  <figcaption>Spheres</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="dragon_global_1024.png" width="400px"/>
+				  <figcaption>Dragon</figcaption>
+				</td>	
+				  <td style="text-align: center;">
+				  <img src="empty_global_1024.png" width="400px"/>
+				  <figcaption>Empty Box</figcaption>
+				</td>	
+			  </tr>
+			</table>
+				
+		</div>
 		<h2>Part 5: Adaptive Sampling</h2>
 
 		
